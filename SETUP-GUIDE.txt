@@ -1,0 +1,44 @@
+SATYABHA AUTOZ SPA — SIMPLE SETUP GUIDE
+
+Bhai, website files are ready, but the live booking database needs to be connected once. Follow these steps carefully. Do not send passwords or secret keys in chat.
+
+STEP 1 — CREATE THE DATABASE
+1. Open https://supabase.com/ and create an account / sign in.
+2. Create a new project named Satyabha Autoz Spa. Choose a strong database password and save it privately.
+3. Once the project is ready, open SQL Editor in the left menu.
+4. Choose New query. Open the file supabase-schema.sql from this ZIP, copy all its contents into the SQL Editor, and click Run.
+
+STEP 2 — CREATE YOUR PRIVATE ADMIN LOGIN
+1. In Supabase, open Authentication > Users.
+2. Add a user with an email address you control and a strong password. This will be the dashboard login.
+3. Copy that user's UUID (not the email).
+4. Open SQL Editor and run this command after replacing the example UUID with the real UUID:
+   insert into public.admin_users (user_id) values ('YOUR-REAL-USER-UUID');
+5. Keep the email/password private. Do not create public sign-up on the website.
+
+STEP 3 — CONNECT WEBSITE TO SUPABASE
+1. In Supabase open Project Settings > API (or API Keys).
+2. Copy the Project URL and the anon / publishable public key. Do NOT copy the service_role or secret key.
+3. Open supabase-config.js in this ZIP using a text editor.
+4. Replace PASTE_SUPABASE_PROJECT_URL_HERE with the Project URL.
+5. Replace PASTE_SUPABASE_ANON_KEY_HERE with the anon/publishable public key. Save the file.
+
+STEP 4 — PUBLISH THE WEBSITE
+Upload the contents of this ZIP's website folder to a static website host such as Netlify or another HTTPS host. The public folder should contain index.html, book.html, admin.html, styles.css, assets/, and the JS files. Do not upload only the ZIP as a webpage.
+
+STEP 5 — TEST BEFORE SHARING
+1. Open your public website and submit one test booking using your own test details.
+2. Open yourwebsite-address/admin.html and sign in with the admin email/password.
+3. Check that the test booking appears and that you can change its status.
+4. Confirm the booking is not visible on the public pages. Delete test records only from a trusted admin/database console if needed.
+
+SECURITY NOTES
+- Customer booking records are protected by Supabase Row Level Security. Anonymous visitors can insert a request but cannot read booking records.
+- Only user IDs added to admin_users can view/update bookings.
+- Never put a service_role key, database password, or admin password in website files.
+- Use HTTPS hosting. Keep admin.html private by not advertising its URL; its data is still protected by database policies.
+- This ZIP does not itself publish the site or create your Supabase account.
+
+BUSINESS DETAILS ALREADY INCLUDED
+Satyabha Autoz Spa · Gandhi Nagar 1st Lane, Berhampur, Odisha · Branch 02
+9124382929 · 8249923274
